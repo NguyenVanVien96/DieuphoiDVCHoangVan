@@ -1,0 +1,1413 @@
+/* =====================================================
+   HOME.CSS
+   Dieu Phoi DVC Hoang Van
+   Version 2.0
+===================================================== */
+
+:root{
+
+    --primary:#005BAC;
+    --primary-dark:#00468E;
+
+    --primary-light:#EAF4FF;
+
+    --background:#F5F8FC;
+
+    --white:#FFFFFF;
+
+    --text:#17324D;
+
+    --muted:#667085;
+
+    --border:#E6ECF4;
+
+    --shadow:0 12px 32px rgba(0,0,0,.08);
+
+    --shadow-hover:0 22px 48px rgba(0,91,172,.18);
+
+    --radius:22px;
+
+    --transition:.35s;
+
+}
+
+/* =====================================================
+RESET
+===================================================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:Inter,Segoe UI,Roboto,sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+}
+
+/* =====================================================
+CONTAINER
+===================================================== */
+
+.container{
+
+    width:1200px;
+
+    max-width:72%;
+
+    margin:auto;
+
+}
+
+/* =======================================
+   HERO
+======================================= */
+
+.hero{
+
+    background:linear-gradient(135deg,#96bbe6,#76b2ee);
+
+    padding:1px 0 1px;
+
+    overflow:hidden;
+
+}
+
+.hero-container{
+
+    width:1400px;
+
+    max-width:92%;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1.35fr .65fr;
+
+    gap:28px;
+
+    align-items:center;
+
+}
+
+.hero-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:12px 28px;
+
+    min-height:48px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.92);
+
+    color:#005BAC;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    white-space:nowrap;
+
+    line-height:1;
+
+    box-shadow:0 6px 18px rgba(0,91,172,.12);
+
+    margin-bottom:6px;
+}
+
+.hero-content h1{
+
+    font-size:20px;
+
+    font-weight:800;
+
+    line-height:1.5;
+
+    color:#17324D;
+
+    margin-bottom:20px;
+
+}
+
+.hero-left p{
+
+    font-size:30px;
+
+    line-height:0.65;
+
+    color:#556371;
+
+    max-width:200px;
+
+    margin-bottom:18px;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+    align-items:center;
+
+}
+
+.btn-primary{
+
+    background:#005BAC;
+
+    color:#fff;
+
+    padding:13px 28px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.btn-primary:hover{
+
+    background:#004A92;
+
+}
+
+.btn-outline{
+
+    border:2px solid #005BAC;
+
+    color:#005BAC;
+
+    padding:11px 28px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.btn-outline:hover{
+
+    background:#005BAC;
+
+    color:#fff;
+
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    height:300px;
+
+    background-repeat:no-repeat;
+
+    background-position:center;
+
+    background-size:cover;
+
+    position:relative;
+
+}
+
+.hero-overlay{
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        rgba(255,255,255,.82) 0%,
+        rgba(255,255,255,.55) 45%,
+        rgba(255,255,255,.08) 100%
+    );
+
+    align-items:flex-start;
+padding-top:40px;
+
+}
+
+.hero-container{
+
+    display:flex;
+
+    align-items:center;
+
+    height:100%;
+
+}
+
+.hero-content{
+
+    width:650px;
+
+}
+
+.hero-tag{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    background:#EAF4FF;
+
+    color:#005BAC;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+.hero-content h1{
+
+    font-size:50px;
+
+    line-height:1.3;
+
+    font-weight:1200;
+
+    color:#17324D;
+
+    margin-bottom:20px;
+
+}
+
+.hero-content p{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    color:#49566A;
+
+    max-width:620px;
+
+}
+
+.hero-line{
+
+    width:90px;
+
+    height:4px;
+
+    background:#005BAC;
+
+    border-radius:20px;
+
+    margin:28px 0 18px;
+
+}
+
+.hero-content small{
+
+    display:block;
+
+    font-size:15px;
+
+    letter-spacing:1px;
+
+    color:#6B7280;
+
+}
+
+@media(max-width:992px){
+
+.hero{
+
+min-height:560px;
+
+}
+
+.hero-content{
+
+    width:800px;
+
+    max-width:100%;
+}
+
+.hero-content p{
+
+margin-top:8px;
+
+}
+
+.hero-line{
+
+margin:24px auto;
+
+}
+
+.hero-content h1{
+
+    font-size:54px;
+
+    font-weight:800;
+
+    line-height:1.2;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.hero{
+
+height:230px;
+
+}
+
+.hero-content h1{
+
+font-size:40px;
+
+}
+
+.hero-content p{
+
+font-size:15px;
+
+line-height:1.1;
+
+}
+
+}
+/* =====================================================
+TITLE
+===================================================== */
+
+.section-title{
+
+    font-family:"Inter","Segoe UI",Roboto,sans-serif;
+
+    font-size:50px;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+    color:#2b77d3;
+
+    text-align:center;
+
+    margin-bottom:2px;
+
+    letter-spacing:-0.3px;
+
+}
+
+.section-subtitle{
+
+    font-family:"Inter","Segoe UI",Roboto,sans-serif;
+
+    font-size:20px;
+
+    font-weight:400;
+
+    line-height:1.7;
+
+    color:#18a123;
+
+    text-align:center;
+
+    max-width:700px;
+
+    margin:0 auto 40px;
+
+}
+/* =====================================================
+ROLE SECTION
+===================================================== */
+
+.role-section{
+
+    padding:1px 0;
+
+    background:#fffefe;
+
+}
+
+/* =====================================================
+ROLE GRID
+===================================================== */
+
+.role-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,minmax(320px,1fr));
+
+    gap:10px;
+
+    align-items:stretch;
+
+}
+
+/* =====================================================
+ROLE CARD
+===================================================== */
+
+.role-card{
+
+    background:#fafdfb;
+
+    border-radius:10px;
+
+    padding:10px 10px;
+
+    min-height:100px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    text-align:center;
+
+    box-shadow:0 10px 10px rgba(190, 24, 24, 0.08);
+
+    border-top:5px solid var(--primary);
+
+    transition:.1s;
+
+}
+
+.role-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:6px;
+
+    background:linear-gradient(90deg,#005BAC,#4AA8FF);
+
+}
+
+.role-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:var(--shadow-hover);
+
+    border-color:#C8DCF5;
+
+}
+
+/* =====================================================
+ICON
+===================================================== */
+
+.role-card-top{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.role-icon-circle{
+
+    width:150px;
+
+    height:150px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+    background:linear-gradient(135deg,#F5FAFF,#DDEEFF);
+
+    color:var(--primary);
+
+    transition:.35s;
+
+    box-shadow:
+
+        inset 0 0 0 1px rgba(0,91,172,.08),
+
+        0 15px 35px rgba(0,91,172,.08);
+
+}
+
+.role-card:hover .role-icon-circle{
+
+    transform:scale(0.08);
+
+    background:linear-gradient(135deg,#005BAC,#3F9EFF);
+
+    color:white;
+
+}
+
+/* =====================================================
+TITLE
+===================================================== */
+
+.role-card h3{
+
+    font-size:40px;
+
+    font-weight:1000;
+
+    letter-spacing:.5px;
+
+    color:#0879eb;
+
+    text-align:center;
+
+}
+
+/* =====================================================
+BUTTON
+===================================================== */
+
+.role-button{
+
+    align-self:flex-end;
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    width:180px;
+
+    height:54px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    background:#005BAC;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    transition:.35s;
+
+    box-shadow:0 10px 24px rgba(0,91,172,.20);
+
+}
+
+.role-button::after{
+
+    content:"➜";
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.role-button:hover{
+
+    background:#00468E;
+
+    transform:translateY(-3px);
+
+}
+
+.role-button:hover::after{
+
+    transform:translateX(6px);
+
+}
+
+/* =====================================================
+COLOR
+===================================================== */
+
+.citizen-card::before{
+
+    background:linear-gradient(90deg,#005BAC,#4AA8FF);
+
+}
+
+.officer-card::before{
+
+    background:linear-gradient(90deg,#0D5C63,#3BB4A0);
+
+}
+
+.officer-card .role-icon-circle{
+
+    background:linear-gradient(135deg,#F1FFFC,#D6FFF4);
+
+    color:#0D5C63;
+
+}
+
+.officer-card:hover .role-icon-circle{
+
+    background:linear-gradient(135deg,#0D5C63,#2AAE97);
+
+    color:white;
+
+}
+/* =====================================================
+SEARCH
+===================================================== */
+
+.search-section{
+
+    margin:35px 0 20px;
+
+}
+
+.search-box{
+
+    width:100%;
+
+    max-width:850px;
+
+    margin:auto;
+
+    height:68px;
+
+    background:white;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 26px;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+
+}
+
+.search-box:hover{
+
+    box-shadow:var(--shadow-hover);
+
+}
+
+.search-icon{
+
+    font-size:24px;
+
+    color:var(--primary);
+
+    margin-right:18px;
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:18px;
+
+    color:#17324D;
+
+}
+
+/* =====================================================
+CATEGORY
+===================================================== */
+
+.category-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:24px;
+
+    margin:45px 0;
+
+}
+
+.category-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    border:1px solid var(--border);
+
+    padding:28px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 8px 22px rgba(0,0,0,.05);
+
+}
+
+.category-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 35px rgba(0,91,172,.12);
+
+}
+
+.category-card.active{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.category-card.active .category-icon{
+
+    color:white;
+
+}
+
+.category-icon{
+
+    font-size:38px;
+
+    margin-bottom:14px;
+
+    color:var(--primary);
+
+}
+
+/* =====================================================
+PROCEDURE
+===================================================== */
+
+.procedure-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.procedure-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border:1px solid var(--border);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+
+    transition:.3s;
+
+}
+
+.procedure-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 18px 35px rgba(0,91,172,.10);
+
+}
+
+.procedure-left{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+}
+
+.procedure-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    background:var(--primary-light);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+}
+
+.procedure-content h3{
+
+    margin-bottom:10px;
+
+    color:var(--text);
+
+    font-size:22px;
+
+}
+
+.procedure-info{
+
+    display:flex;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+    color:var(--muted);
+
+    font-size:15px;
+
+}
+
+.btn-service{
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:14px 28px;
+
+    border-radius:14px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.btn-service:hover{
+
+    background:var(--primary-dark);
+
+}
+
+/* =====================================================
+NO RESULT
+===================================================== */
+
+.no-result{
+
+    padding:60px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:18px;
+
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:1200px){
+
+.role-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.hero-container{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+.hero-buttons{
+
+    justify-content:center;
+
+}
+
+.hero-right{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.container{
+
+    max-width:94%;
+
+}
+
+.hero{
+
+    padding:60px 0;
+
+}
+
+.hero-left h1{
+
+    font-size:40px;
+
+}
+
+.section-title{
+
+    font-size:60px;
+
+}
+
+.role-card{
+
+    min-height:340px;
+
+    padding:40px 28px;
+
+}
+
+.role-icon-circle{
+
+    width:60px;
+
+    height:60px;
+
+}
+
+.role-card h3{
+
+    font-size:28px;
+
+}
+
+.role-button{
+
+    width:100%;
+
+    align-self:center;
+
+}
+
+.procedure-card{
+
+    flex-direction:column;
+
+    gap:20px;
+
+    align-items:flex-start;
+
+}
+
+.hero-right{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.hero-left h1{
+
+    font-size:34px;
+
+}
+
+.section-title{
+
+    font-size:30px;
+
+}
+
+.section-subtitle{
+
+    font-size:16px;
+
+}
+
+.search-box{
+
+    height:60px;
+
+}
+
+}
+/* =====================================================
+   HOME SEARCH
+===================================================== */
+
+.home-search{
+
+    padding:30px 0;
+
+    background:#F8FBFF;
+
+}
+
+.home-search-title{
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+}
+
+.home-search-title h2{
+
+    font-size:38px;
+
+    font-weight:2000;
+
+    color:#17324D;
+
+    margin-bottom:12px;
+
+}
+
+.home-search-title p{
+
+    font-size:17px;
+
+    color:#6B7280;
+
+}
+
+.home-search-box{
+
+    max-width:900px;
+
+    margin:auto;
+
+    height:72px;
+
+    background:#FFFFFF;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 24px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    border:1px solid #E5EDF5;
+
+}
+
+.home-search-box:hover{
+
+    box-shadow:0 18px 40px rgba(0,91,172,.15);
+
+}
+
+.home-search-box:focus-within{
+
+    border-color:#005BAC;
+
+    box-shadow:0 0 0 4px rgba(0,91,172,.12);
+
+}
+
+.search-svg{
+
+    color:#005BAC;
+
+    margin-right:18px;
+
+    flex-shrink:0;
+
+}
+
+.home-search-box input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:18px;
+
+    color:#17324D;
+
+}
+
+.home-search-box input::placeholder{
+
+    color:#9AA6B2;
+
+}
+
+/* =====================================================
+   SEARCH RESULT
+===================================================== */
+
+.home-search-result{
+
+    width:900px;
+
+    max-width:100%;
+
+    margin:15px auto 0;
+
+    background:#FFFFFF;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.10);
+
+    border:1px solid #E7EEF5;
+
+}
+
+.home-search-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 24px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    border-bottom:1px solid #EEF3F8;
+
+}
+
+.home-search-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.home-search-item:hover{
+
+    background:#F5FAFF;
+
+}
+
+.home-search-item strong{
+
+    display:block;
+
+    font-size:17px;
+
+    color:#17324D;
+
+    margin-bottom:6px;
+
+}
+
+.home-search-item span{
+
+    font-size:14px;
+
+    color:#6B7280;
+
+}
+
+.home-search-item small{
+
+    color:#005BAC;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.home-search-empty{
+
+    text-align:center;
+
+    padding:26px;
+
+    color:#6B7280;
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:768px){
+
+.home-search{
+
+    padding:50px 0;
+
+}
+
+.home-search-title h2{
+
+    font-size:30px;
+
+}
+
+.home-search-box{
+
+    height:62px;
+
+}
+
+.home-search-box input{
+
+    font-size:16px;
+
+}
+
+.home-search-item{
+
+    padding:16px;
+
+}
+
+}
+.home-search{
+
+    margin:50px auto;
+
+    text-align:center;
+
+}
+
+.search-box{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.search-box input{
+
+    width:600px;
+
+    padding:14px;
+
+    border-radius:8px;
+
+    border:1px solid #ccc;
+
+    font-size:16px;
+
+}
+
+.search-box button{
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#0d6efd;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.search-box button:hover{
+
+    background:#0b5ed7;
+
+}

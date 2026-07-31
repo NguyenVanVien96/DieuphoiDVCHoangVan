@@ -1,0 +1,252 @@
+/* ==============================
+   HEADER
+============================== */
+
+.header{
+
+    background:#ffffff;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.06);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+}
+
+.header-container{
+
+    height:82px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+/* Logo */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    text-decoration:none;
+
+}
+
+.logo-icon{
+
+    width:70px;
+
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+.logo-image{
+
+    width:72px;
+
+    height:72px;
+
+    object-fit:contain;
+
+    background:transparent;
+
+}
+.logo-text h2{
+
+    font-size:25px;
+
+    color:#2e98a9;
+
+    line-height:0.2;
+   position:relative;
+top:4px;
+
+}
+
+.logo-text span{
+ margin:2;
+    font-size:23px;
+
+    color:#60af10;
+
+}
+
+/* Menu */
+
+.menu{
+
+    display:flex;
+
+    gap:70px;
+
+}
+
+.menu a{
+
+    color:#1972d0;
+
+    text-decoration:none;
+
+    font-size:23px;
+
+    font-weight:800;
+
+    transition:.5s;
+
+    position:relative;
+
+}
+
+.menu a:hover{
+
+    color:#005BAC;
+
+}
+
+.menu a.active{
+
+    color:#005BAC;
+
+    font-weight:700;
+
+}
+
+.menu a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0;
+
+    height:3px;
+
+    background:#005BAC;
+
+    transition:.3s;
+
+}
+
+.menu a:hover::after,
+
+.menu a.active::after{
+
+    width:100%;
+
+}
+
+/* Button */
+
+.login-btn{
+
+    background:#005BAC;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 24px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.login-btn:hover{
+
+    background:#00458A;
+
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+.menu{
+
+    display:none;
+
+}
+
+.header-container{
+
+    height:72px;
+
+}
+
+.logo-text h2{
+
+    font-size:18px;
+
+}
+
+}
+/*==============================
+   DATE & TIME
+==============================*/
+
+.header-time{
+
+    min-width:220px;
+
+    padding:8px 14px;
+
+    border-radius:10px;
+
+    background:#f4f8fc;
+
+    border:1px solid #d8e4ef;
+
+    text-align:center;
+
+    line-height:1.4;
+
+}
+
+.time-date{
+
+    font-size:13px;
+
+    color:#4b5563;
+
+    font-weight:500;
+
+}
+
+.time-clock{
+
+    font-size:20px;
+
+    color:#005BAC;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}

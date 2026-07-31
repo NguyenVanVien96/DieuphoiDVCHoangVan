@@ -1,0 +1,332 @@
+/* =====================================================
+   PROCEDURE STATUS
+===================================================== */
+
+.procedure-status-page{
+
+    min-height:100vh;
+
+    background:#f4f7fb;
+
+    padding:50px 20px 80px;
+
+}
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.procedure-status-page h1{
+
+    text-align:center;
+
+    color:#0b5ed7;
+
+    font-size:36px;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+}
+
+.description{
+
+    text-align:center;
+
+    color:#666;
+
+    font-size:17px;
+
+    margin-bottom:35px;
+
+}
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-area{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:35px;
+
+}
+
+.search-box{
+
+    width:100%;
+
+    max-width:650px;
+
+    padding:15px 18px;
+
+    border:1px solid #dcdcdc;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    transition:.3s;
+
+    background:#fff;
+
+}
+
+.search-box:focus{
+
+    outline:none;
+
+    border-color:#0b5ed7;
+
+    box-shadow:0 0 12px rgba(11,94,215,.2);
+
+}
+
+.search-btn{
+
+    padding:15px 28px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#0b5ed7;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.search-btn:hover{
+
+    background:#084298;
+
+}
+
+/* =====================================================
+   RESULT CARD
+===================================================== */
+
+.status-card{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:auto;
+
+    background:#fff;
+
+    border-radius:14px;
+
+    padding:28px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+
+}
+
+.status-card h3{
+
+    color:#0b5ed7;
+
+    font-size:18px;
+
+    margin-bottom:10px;
+
+}
+
+.status-card h4{
+
+    font-size:24px;
+
+    color:#222;
+
+    line-height:1.5;
+
+    margin-bottom:20px;
+
+}
+
+.status-card p{
+
+    margin:12px 0;
+
+    color:#444;
+
+    line-height:1.7;
+
+}
+
+.status-card strong{
+
+    color:#222;
+
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.active{
+
+    color:#198754;
+
+    font-weight:700;
+
+}
+
+.abolished{
+
+    color:#dc3545;
+
+    font-weight:700;
+
+}
+
+.replaced{
+
+    color:#fd7e14;
+
+    font-weight:700;
+
+}
+
+/* =====================================================
+   DOWNLOAD
+===================================================== */
+
+.download-btn{
+
+    display:inline-block;
+
+    margin-top:22px;
+
+    padding:13px 24px;
+
+    border-radius:10px;
+
+    background:#0b5ed7;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.download-btn:hover{
+
+    background:#084298;
+
+}
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty-result{
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:18px;
+
+    margin-top:40px;
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:768px){
+
+    .procedure-status-page h1{
+
+        font-size:28px;
+
+    }
+
+    .status-card{
+
+        padding:20px;
+
+    }
+
+    .status-card h4{
+
+        font-size:20px;
+
+    }
+
+    .search-btn{
+
+        width:100%;
+
+        max-width:650px;
+
+    }
+
+}
+/* ===========================
+   STATUS
+=========================== */
+
+.status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-weight:600;
+
+    font-size:15px;
+
+}
+
+.status.active{
+
+    color:#2e7d32;
+
+    background:#e8f5e9;
+
+}
+
+.status.abolished{
+
+    color:#d32f2f;
+
+    background:#ffebee;
+
+}
+
+.status.replaced{
+
+    color:#ef6c00;
+
+    background:#fff3e0;
+
+}

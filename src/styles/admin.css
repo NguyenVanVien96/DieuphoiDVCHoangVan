@@ -1,0 +1,69 @@
+.admin-page{
+
+    padding:40px;
+
+}
+
+.admin-page h1{
+
+    margin-bottom:25px;
+
+}
+
+.add-btn{
+
+    padding:12px 22px;
+
+    background:#1976D2;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:8px;
+
+    margin-bottom:20px;
+
+    cursor:pointer;
+
+}
+
+.admin-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:#fff;
+
+}
+
+.admin-table th,
+
+.admin-table td{
+
+    border:1px solid #ddd;
+
+    padding:12px;
+
+    text-align:left;
+
+}
+
+.admin-table th{
+
+    background:#1976D2;
+
+    color:#fff;
+
+}
+
+.admin-table button{
+
+    margin-right:8px;
+
+    padding:6px 12px;
+
+    cursor:pointer;
+
+}
