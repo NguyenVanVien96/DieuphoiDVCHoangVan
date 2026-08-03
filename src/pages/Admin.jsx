@@ -9,6 +9,10 @@ import {
 
     deleteProcedure,
 
+    deleteSelected,
+
+    clearProcedures,
+
     uploadPdf,
 
     getPdfUrl
@@ -21,9 +25,11 @@ export default function Admin() {
 
     const [procedures, setProcedures] = useState([]);
 
-    const [file, setFile] = useState(null);
+const [file, setFile] = useState(null);
 
-    const [loading, setLoading] = useState(false);
+const [loading, setLoading] = useState(false);
+
+const [selected, setSelected] = useState([]);
 
     /*
     ==============================================
@@ -144,7 +150,79 @@ export default function Admin() {
         }
 
     }
+function toggle(id) {
 
+    setSelected(prev =>
+
+        prev.includes(id)
+
+            ? prev.filter(x => x !== id)
+
+            : [...prev, id]
+
+    );
+
+}
+
+function toggleAll() {
+
+    if (selected.length === procedures.length) {
+
+        setSelected([]);
+
+    }
+
+    else {
+
+        setSelected(
+
+            procedures.map(i => i.id)
+
+        );
+
+    }
+
+}
+
+async function handleDeleteSelected() {
+
+    if (selected.length === 0) {
+
+        alert("Chưa chọn thủ tục.");
+
+        return;
+
+    }
+
+    if (!window.confirm("Xóa các thủ tục đã chọn?")) {
+
+        return;
+
+    }
+
+    await deleteSelected(selected);
+
+    setSelected([]);
+
+    loadData();
+
+}
+
+async function handleClear() {
+
+    if (!window.confirm("Xóa toàn bộ thủ tục?")) {
+
+        return;
+
+    }
+
+    await clearProcedures();
+
+    setSelected([]);
+
+    loadData();
+
+}
     /*
     ==============================================
     UI
@@ -242,30 +320,112 @@ export default function Admin() {
                         Danh sách thủ tục
 
                     </h2>
+                    <div style={{ marginBottom: 15 }}>
+
+    <button
+
+        onClick={handleDeleteSelected}
+
+    >
+
+        Xóa đã chọn
+
+    </button>
+
+    <button
+
+        style={{
+            marginLeft: 10,
+            background: "#d32f2f",
+            color: "#fff"
+        }}
+
+        onClick={handleClear}
+
+    >
+
+        Xóa toàn bộ
+
+    </button>
+
+</div>
 
                     <table className="admin-table">
+<div
+    style={{
+        marginBottom:20,
+        display:"flex",
+        gap:"10px"
+    }}
+>
 
+    <button
+
+        className="upload-btn"
+
+        onClick={handleDeleteSelected}
+
+    >
+
+        Xóa đã chọn
+
+    </button>
+
+    <button
+
+        className="upload-btn"
+
+        style={{
+            background:"#d32f2f"
+        }}
+
+        onClick={handleClear}
+
+    >
+
+        Xóa toàn bộ
+
+    </button>
+
+</div>
                         <thead>
 
-                            <tr>
+    <tr>
 
-                                <th>Mã</th>
+        <th>
 
-                                <th>Tên thủ tục</th>
+            <input
 
-                                <th>Trạng thái</th>
+                type="checkbox"
 
-                                <th>Quyết định</th>
+                checked={
+                    selected.length === procedures.length &&
+                    procedures.length > 0
+                }
 
-                                <th>Ngày ban hành</th>
+                onChange={toggleAll}
 
-                                <th>PDF</th>
+            />
 
-                                <th>Thao tác</th>
+        </th>
 
-                            </tr>
+        <th>Mã</th>
 
-                        </thead>
+        <th>Tên thủ tục</th>
+
+        <th>Trạng thái</th>
+
+        <th>Quyết định</th>
+
+        <th>Ngày ban hành</th>
+
+        <th>PDF</th>
+
+        <th>Thao tác</th>
+
+    </tr>
+
+</thead>
 
                         <tbody>
 
@@ -304,6 +464,19 @@ export default function Admin() {
                                 procedures.map(item => (
 
                                     <tr key={item.id}>
+                                        <td>
+
+    <input
+
+        type="checkbox"
+
+        checked={selected.includes(item.id)}
+
+        onChange={() => toggle(item.id)}
+
+    />
+
+</td>
 
                                         <td>
 
@@ -349,25 +522,19 @@ export default function Admin() {
 
                                                             getPdfUrl(
 
-                                                                item.sourceFile
+                                                                item.pdf
 
                                                             )
 
                                                         }
 
                                                         target="_blank"
-
-                                                        rel="noreferrer"
-
-                                                    >
-
-                                                        📄 Tải
-
-                                                    </a>
-
-                                                )
-
-                                            }
+            rel="noreferrer"
+        >
+            📄 Tải
+        </a>
+    )
+}
 
                                         </td>
 

@@ -201,3 +201,42 @@ export function getPdfUrl(fileName) {
     return `${BASE_URL}/files/${fileName}`;
 
 }
+export async function deleteSelected(ids) {
+
+    return request(
+
+        `${API}/procedure-status/batch`,
+
+        {
+
+            method: "DELETE",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify({ ids })
+
+        }
+
+    );
+
+}
+
+export async function clearProcedures() {
+
+    return request(
+
+        `${API}/procedure-status/clear`,
+
+        {
+
+            method: "DELETE"
+
+        }
+
+    );
+
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { uploadPdf } from "../services/api";
 
 export default function UploadPdf() {
 
@@ -21,23 +22,21 @@ export default function UploadPdf() {
 
         try {
 
-            const response = await fetch(
-                "http://localhost:3000/api/upload",
-                {
-                    method: "POST",
-                    body: formData
-                }
+            const result = await uploadPdf(formData);
+
+            setMessage(
+                `Upload thành công. Đã nhận diện ${result.total} thủ tục.`
             );
 
-            const result = await response.json();
+            setFile(null);
 
-            setMessage(result.message);
+        }
 
-        } catch (err) {
+        catch (err) {
 
-            console.log(err);
+            console.error(err);
 
-            setMessage("Upload thất bại.");
+            setMessage(err.message || "Upload thất bại.");
 
         }
 
@@ -68,6 +67,20 @@ export default function UploadPdf() {
             />
 
             <br /><br />
+
+            {
+
+                file && (
+
+                    <p>
+
+                        <strong>File:</strong> {file.name}
+
+                    </p>
+
+                )
+
+            }
 
             <button onClick={handleUpload}>
 
