@@ -4,7 +4,9 @@ API CONFIG
 ====================================================
 */
 
-const API = "http://localhost:3000/api";
+const API =
+    import.meta.env.VITE_API_URL ||
+    "http://localhost:3000/api";
 
 /*
 ====================================================
@@ -16,7 +18,17 @@ async function request(url, options = {}) {
 
     const response = await fetch(url, options);
 
-    const json = await response.json();
+    let json = {};
+
+    try {
+
+        json = await response.json();
+
+    } catch {
+
+        json = {};
+
+    }
 
     if (!response.ok) {
 
@@ -40,7 +52,7 @@ TRA CỨU THỦ TỤC
 
 export async function searchProcedure(keyword = "") {
 
-    return await request(
+    return request(
 
         `${API}/procedure-status?keyword=${encodeURIComponent(keyword)}`
 
@@ -56,7 +68,7 @@ LẤY TOÀN BỘ DANH SÁCH
 
 export async function getProcedureStatus() {
 
-    return await request(
+    return request(
 
         `${API}/procedure-status`
 
@@ -72,7 +84,7 @@ UPLOAD PDF
 
 export async function uploadPdf(formData) {
 
-    return await request(
+    return request(
 
         `${API}/upload`,
 
@@ -96,7 +108,7 @@ THÊM THỦ TỤC
 
 export async function addProcedure(data) {
 
-    return await request(
+    return request(
 
         `${API}/procedure-status`,
 
@@ -126,7 +138,7 @@ CẬP NHẬT THỦ TỤC
 
 export async function updateProcedure(id, data) {
 
-    return await request(
+    return request(
 
         `${API}/procedure-status/${id}`,
 
@@ -156,7 +168,7 @@ XÓA THỦ TỤC
 
 export async function deleteProcedure(id) {
 
-    return await request(
+    return request(
 
         `${API}/procedure-status/${id}`,
 
@@ -184,6 +196,8 @@ export function getPdfUrl(fileName) {
 
     }
 
-    return `http://localhost:3000/files/${fileName}`;
+    const BASE_URL = API.replace("/api", "");
+
+    return `${BASE_URL}/files/${fileName}`;
 
 }
