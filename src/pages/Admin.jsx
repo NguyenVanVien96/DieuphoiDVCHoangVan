@@ -4,37 +4,34 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 
 import {
-
     getProcedureStatus,
-
     deleteProcedure,
-
     deleteSelected,
-
     clearProcedures,
-
     uploadPdf,
-
     getPdfUrl
-
 } from "../services/api";
 
 import "../styles/admin.css";
 
+
 export default function Admin() {
+
 
     const [procedures, setProcedures] = useState([]);
 
-const [file, setFile] = useState(null);
+    const [file, setFile] = useState(null);
 
-const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-const [selected, setSelected] = useState([]);
+    const [selected, setSelected] = useState([]);
+
+
 
     /*
-    ==============================================
+    ======================================
     LOAD DATA
-    ==============================================
+    ======================================
     */
 
     async function loadData() {
@@ -46,14 +43,15 @@ const [selected, setSelected] = useState([]);
             setProcedures(data);
 
         }
+        catch(error) {
 
-        catch (err) {
-
-            console.error(err);
+            console.error(error);
 
         }
 
     }
+
+
 
     useEffect(() => {
 
@@ -61,173 +59,332 @@ const [selected, setSelected] = useState([]);
 
     }, []);
 
+
+
+
+
     /*
-    ==============================================
-    DELETE
-    ==============================================
+    ======================================
+    DELETE ONE
+    ======================================
     */
 
     async function handleDelete(id) {
 
-        if (!window.confirm("Bạn có chắc chắn muốn xóa?")) {
+
+        if(
+            !window.confirm(
+                "Bạn có chắc chắn muốn xóa thủ tục này?"
+            )
+        ){
 
             return;
 
         }
+
 
         try {
 
             await deleteProcedure(id);
 
-            loadData();
-
             alert("Đã xóa.");
 
-        }
-
-        catch (err) {
-
-            console.error(err);
-
-            alert("Không thể xóa.");
+            loadData();
 
         }
+        catch(error){
+
+            console.error(error);
+
+            alert(
+                "Không thể xóa thủ tục."
+            );
+
+        }
+
 
     }
 
+
+
+
+
+
     /*
-    ==============================================
-    UPLOAD
-    ==============================================
+    ======================================
+    SELECT
+    ======================================
     */
 
-    async function handleUpload() {
 
-        if (!file) {
+    function toggle(id){
 
-            alert("Vui lòng chọn file PDF.");
+
+        setSelected(prev =>
+
+            prev.includes(id)
+
+            ?
+
+            prev.filter(
+                item => item !== id
+            )
+
+            :
+
+            [
+                ...prev,
+                id
+            ]
+
+        );
+
+
+    }
+
+
+
+    function toggleAll(){
+
+
+        if(
+            selected.length === procedures.length
+            &&
+            procedures.length > 0
+        ){
+
+            setSelected([]);
+
+        }
+        else{
+
+            setSelected(
+                procedures.map(
+                    item => item.id
+                )
+            );
+
+        }
+
+
+    }
+
+
+
+
+
+
+
+    /*
+    ======================================
+    DELETE SELECTED
+    ======================================
+    */
+
+
+    async function handleDeleteSelected(){
+
+
+        if(selected.length === 0){
+
+            alert(
+                "Chưa chọn thủ tục."
+            );
 
             return;
 
         }
 
+
+
+        if(
+            !window.confirm(
+                "Xóa các thủ tục đã chọn?"
+            )
+        ){
+
+            return;
+
+        }
+
+
+
         try {
 
-            setLoading(true);
 
-            const formData = new FormData();
+            await deleteSelected(selected);
 
-            formData.append("pdf", file);
 
-            const result = await uploadPdf(formData);
+            setSelected([]);
 
-            alert(
-
-                `Upload thành công.\n\n` +
-
-                `Đã nhận diện ${result.total} thủ tục.`
-
-            );
-
-            setFile(null);
 
             loadData();
 
-        }
-
-        catch (err) {
-
-            console.error(err);
-
-            alert(err.message);
 
         }
+        catch(error){
 
-        finally {
+            console.error(error);
+
+            alert(
+                "Không thể xóa."
+            );
+
+        }
+
+
+    }
+
+
+
+
+
+
+
+    /*
+    ======================================
+    DELETE ALL
+    ======================================
+    */
+
+
+    async function handleClear(){
+
+
+        if(
+            !window.confirm(
+                "Xóa toàn bộ thủ tục?"
+            )
+        ){
+
+            return;
+
+        }
+
+
+
+        try {
+
+
+            await clearProcedures();
+
+
+            setSelected([]);
+
+
+            loadData();
+
+
+        }
+        catch(error){
+
+            console.error(error);
+
+            alert(
+                "Không thể xóa dữ liệu."
+            );
+
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+    /*
+    ======================================
+    UPLOAD PDF
+    ======================================
+    */
+
+
+    async function handleUpload(){
+
+
+        if(!file){
+
+            alert(
+                "Vui lòng chọn file PDF."
+            );
+
+            return;
+
+        }
+
+
+
+        try{
+
+
+            setLoading(true);
+
+
+
+            const formData =
+                new FormData();
+
+
+
+            formData.append(
+                "pdf",
+                file
+            );
+
+
+
+            const result =
+                await uploadPdf(
+                    formData
+                );
+
+
+
+            alert(
+                `Upload thành công.
+Đã nhận diện ${result.total} thủ tục.`
+            );
+
+
+
+            setFile(null);
+
+
+
+            loadData();
+
+
+        }
+        catch(error){
+
+
+            console.error(error);
+
+
+            alert(
+                error.message
+            );
+
+
+        }
+        finally{
 
             setLoading(false);
 
         }
 
-    }
-function toggle(id) {
-
-    setSelected(prev =>
-
-        prev.includes(id)
-
-            ? prev.filter(x => x !== id)
-
-            : [...prev, id]
-
-    );
-
-}
-
-function toggleAll() {
-
-    if (selected.length === procedures.length) {
-
-        setSelected([]);
 
     }
 
-    else {
 
-        setSelected(
 
-            procedures.map(i => i.id)
 
-        );
 
-    }
 
-}
-
-async function handleDeleteSelected() {
-
-    if (selected.length === 0) {
-
-        alert("Chưa chọn thủ tục.");
-
-        return;
-
-    }
-
-    if (!window.confirm("Xóa các thủ tục đã chọn?")) {
-
-        return;
-
-    }
-
-    await deleteSelected(selected);
-
-    setSelected([]);
-
-    loadData();
-
-}
-
-async function handleClear() {
-
-    if (!window.confirm("Xóa toàn bộ thủ tục?")) {
-
-        return;
-
-    }
-
-    await clearProcedures();
-
-    setSelected([]);
-
-    loadData();
-
-}
-    /*
-    ==============================================
-    UI
-    ==============================================
-    */
 
     return (
 
@@ -235,23 +392,29 @@ async function handleClear() {
 
             <Header />
 
+
             <main className="admin-page">
+
 
                 <div className="container">
 
+
                     <h1>
-
                         QUẢN TRỊ THỦ TỤC HÀNH CHÍNH
-
                     </h1>
+
+
+
+
 
                     <div className="upload-box">
 
+
                         <h2>
-
                             Upload Quyết định PDF
-
                         </h2>
+
+
 
                         <input
 
@@ -259,35 +422,34 @@ async function handleClear() {
 
                             accept=".pdf"
 
-                            onChange={(e) =>
-
-                                setFile(e.target.files[0])
-
+                            onChange={
+                                e =>
+                                setFile(
+                                    e.target.files[0]
+                                )
                             }
 
                         />
 
+
+
                         {
+                            file &&
 
-                            file && (
+                            <p>
 
-                                <p>
+                                <strong>
+                                    File:
+                                </strong>
 
-                                    <strong>
+                                {" "}
 
-                                        File:
+                                {file.name}
 
-                                    </strong>
-
-                                    {" "}
-
-                                    {file.name}
-
-                                </p>
-
-                            )
-
+                            </p>
                         }
+
+
 
                         <button
 
@@ -300,290 +462,352 @@ async function handleClear() {
                         >
 
                             {
-
                                 loading
-
-                                    ? "Đang phân tích..."
-
-                                    : "Upload PDF"
-
+                                ?
+                                "Đang phân tích..."
+                                :
+                                "Upload PDF"
                             }
+
 
                         </button>
 
+
                     </div>
+
+
+
+
+
 
                     <hr />
 
+
+
+
+
                     <h2>
-
                         Danh sách thủ tục
-
                     </h2>
-                    <div style={{ marginBottom: 15 }}>
 
-    <button
 
-        onClick={handleDeleteSelected}
 
-    >
 
-        Xóa đã chọn
 
-    </button>
+                    <div
+                        style={{
+                            marginBottom:20,
+                            display:"flex",
+                            gap:"10px"
+                        }}
+                    >
 
-    <button
 
-        style={{
-            marginLeft: 10,
-            background: "#d32f2f",
-            color: "#fff"
-        }}
+                        <button
 
-        onClick={handleClear}
+                            className="upload-btn"
 
-    >
+                            onClick={
+                                handleDeleteSelected
+                            }
 
-        Xóa toàn bộ
+                        >
 
-    </button>
+                            Xóa đã chọn
 
-</div>
+                        </button>
+
+
+
+
+                        <button
+
+                            className="upload-btn"
+
+                            style={{
+                                background:"#d32f2f"
+                            }}
+
+                            onClick={
+                                handleClear
+                            }
+
+                        >
+
+                            Xóa toàn bộ
+
+                        </button>
+
+
+
+                    </div>
+
+
+
+
+
+
 
                     <table className="admin-table">
-<div
-    style={{
-        marginBottom:20,
-        display:"flex",
-        gap:"10px"
-    }}
->
 
-    <button
 
-        className="upload-btn"
-
-        onClick={handleDeleteSelected}
-
-    >
-
-        Xóa đã chọn
-
-    </button>
-
-    <button
-
-        className="upload-btn"
-
-        style={{
-            background:"#d32f2f"
-        }}
-
-        onClick={handleClear}
-
-    >
-
-        Xóa toàn bộ
-
-    </button>
-
-</div>
                         <thead>
 
-    <tr>
 
-        <th>
+                            <tr>
 
-            <input
 
-                type="checkbox"
+                                <th>
 
-                checked={
-                    selected.length === procedures.length &&
-                    procedures.length > 0
-                }
+                                    <input
 
-                onChange={toggleAll}
+                                        type="checkbox"
 
-            />
+                                        checked={
+                                            selected.length === procedures.length
+                                            &&
+                                            procedures.length > 0
+                                        }
 
-        </th>
+                                        onChange={toggleAll}
 
-        <th>Mã</th>
+                                    />
 
-        <th>Tên thủ tục</th>
+                                </th>
 
-        <th>Trạng thái</th>
 
-        <th>Quyết định</th>
+                                <th>
+                                    Mã
+                                </th>
 
-        <th>Ngày ban hành</th>
 
-        <th>PDF</th>
+                                <th>
+                                    Tên thủ tục
+                                </th>
 
-        <th>Thao tác</th>
 
-    </tr>
+                                <th>
+                                    Trạng thái
+                                </th>
 
-</thead>
+
+                                <th>
+                                    Quyết định
+                                </th>
+
+
+                                <th>
+                                    Ngày ban hành
+                                </th>
+
+
+                                <th>
+                                    PDF
+                                </th>
+
+
+                                <th>
+                                    Thao tác
+                                </th>
+
+
+                            </tr>
+
+
+                        </thead>
+
+
+
+
+
 
                         <tbody>
 
-                            {
 
-                                procedures.length === 0
 
-                                ?
+                        {
+                            procedures.length === 0
 
-                                (
+                            ?
 
-                                    <tr>
+                            <tr>
 
-                                        <td
+                                <td
 
-                                            colSpan="7"
+                                    colSpan="8"
 
-                                            style={{
+                                    style={{
+                                        textAlign:"center"
+                                    }}
 
-                                                textAlign:"center"
+                                >
 
-                                            }}
+                                    Chưa có dữ liệu.
 
-                                        >
+                                </td>
 
-                                            Chưa có dữ liệu.
 
-                                        </td>
+                            </tr>
 
-                                    </tr>
 
-                                )
+                            :
 
-                                :
 
-                                procedures.map(item => (
+                            procedures.map(item => (
 
-                                    <tr key={item.id}>
-                                        <td>
 
-    <input
+                                <tr key={item.id}>
 
-        type="checkbox"
 
-        checked={selected.includes(item.id)}
+                                    <td>
 
-        onChange={() => toggle(item.id)}
 
-    />
+                                        <input
 
-</td>
+                                            type="checkbox"
 
-                                        <td>
+                                            checked={
+                                                selected.includes(
+                                                    item.id
+                                                )
+                                            }
 
-                                            {item.code}
+                                            onChange={() =>
+                                                toggle(item.id)
+                                            }
 
-                                        </td>
+                                        />
 
-                                        <td>
 
-                                            {item.name}
+                                    </td>
 
-                                        </td>
 
-                                        <td>
 
-                                            {item.status}
 
-                                        </td>
+                                    <td>
+                                        {item.code}
+                                    </td>
 
-                                        <td>
 
-                                            {item.decision}
 
-                                        </td>
+                                    <td>
+                                        {item.name}
+                                    </td>
 
-                                        <td>
 
-                                            {item.issuedDate}
 
-                                        </td>
+                                    <td>
+                                        {item.status}
+                                    </td>
 
-                                        <td>
 
-                                            {
 
-                                                item.sourceFile &&
+                                    <td>
+                                        {item.decision}
+                                    </td>
 
-                                                (
 
-                                                    <a
 
-                                                        href={
+                                    <td>
+                                        {item.issuedDate}
+                                    </td>
 
-                                                            getPdfUrl(
 
-                                                                item.pdf
 
-                                                            )
 
-                                                        }
+                                    <td>
 
-                                                        target="_blank"
-            rel="noreferrer"
-        >
-            📄 Tải
-        </a>
-    )
-}
 
-                                        </td>
+                                        {
+                                            item.pdf &&
 
-                                        <td>
+                                            <a
 
-                                            <button>
-
-                                                Sửa
-
-                                            </button>
-
-                                            <button
-
-                                                onClick={()=>
-
-                                                    handleDelete(
-
-                                                        item.id
-
+                                                href={
+                                                    getPdfUrl(
+                                                        item.pdf
                                                     )
-
                                                 }
+
+                                                target="_blank"
+
+                                                rel="noreferrer"
 
                                             >
 
-                                                Xóa
+                                                📄 Tải
 
-                                            </button>
+                                            </a>
 
-                                        </td>
+                                        }
 
-                                    </tr>
 
-                                ))
+                                    </td>
 
-                            }
+
+
+
+
+                                    <td>
+
+
+                                        <button>
+
+                                            Sửa
+
+                                        </button>
+
+
+
+                                        <button
+
+                                            onClick={() =>
+                                                handleDelete(
+                                                    item.id
+                                                )
+                                            }
+
+                                        >
+
+                                            Xóa
+
+                                        </button>
+
+
+                                    </td>
+
+
+
+                                </tr>
+
+
+                            ))
+
+                        }
+
+
 
                         </tbody>
 
+
+
                     </table>
+
+
 
                 </div>
 
+
             </main>
 
+
+
             <Footer />
+
 
         </>
 
     );
+
 
 }
